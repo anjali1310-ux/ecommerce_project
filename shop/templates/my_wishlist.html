@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Wishlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background:#f1f3f6;">
+
+    <div class="container mt-5">
+
+        <h1 class="mb-4">❤️ My Wishlist</h1>
+
+        <div class="row">
+
+            {% for item in wishlist_items %}
+
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm border-0 h-100 text-center">
+
+                    {% if item.product.image %}
+                    <img src="{{ item.product.image.url }}" class="card-img-top p-3"
+                        style="height:200px; object-fit:contain;">
+                    {% else %}
+                    <div class="p-5 text-muted">No Image</div>
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5>{{ item.product.name }}</h5>
+                        <h5 class="text-success">₹{{ item.product.price }}</h5>
+
+                        <a href="/product/{{ item.product.id }}/" class="btn btn-primary w-100">
+                            View Product
+                        </a>
+
+                        <a href="/remove-from-wishlist/{{ item.id }}/" class="btn btn-danger w-100 mt-2">
+                            Remove
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            {% empty %}
+
+            <div class="alert alert-info">
+                Your wishlist is empty.
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        <a href="/" class="btn btn-secondary">
+            Back Home
+        </a>
+
+    </div>
+
+</body>
+
+</html>

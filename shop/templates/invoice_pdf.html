@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #222;
+            font-size: 13px;
+        }
+
+        .top-bar {
+            background-color: #0d6efd;
+            color: white;
+            padding: 18px;
+        }
+
+        .brand {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .invoice-title {
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section h3 {
+            color: #0d6efd;
+            border-bottom: 2px solid #0d6efd;
+            padding-bottom: 5px;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        th {
+            background-color: #f1f3f6;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            color: #198754;
+            margin-top: 25px;
+        }
+
+        .footer {
+            margin-top: 35px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid #ddd;
+            padding-top: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="brand">MyShop</div>
+        <div class="invoice-title">Official Order Invoice</div>
+    </div>
+
+    <div class="section">
+        <h3>Invoice Details</h3>
+
+        <table>
+            <tr>
+                <td><strong>Invoice No.</strong></td>
+                <td>#INV{{ order.id }}</td>
+            </tr>
+            <tr>
+                <td><strong>Order ID</strong></td>
+                <td>#{{ order.id }}</td>
+            </tr>
+            <tr>
+                <td><strong>Order Date</strong></td>
+                <td>{{ order.order_date }}</td>
+            </tr>
+            <tr>
+                <td><strong>Status</strong></td>
+                <td>{{ order.status }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Customer Details</h3>
+
+        <table>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td>{{ order.customer_name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Phone</strong></td>
+                <td>{{ order.phone }}</td>
+            </tr>
+            <tr>
+                <td><strong>Address</strong></td>
+                <td>{{ order.address }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h3>Payment Summary</h3>
+
+        <table>
+            <tr>
+                <th>Description</th>
+                <th>Payment Method</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Product Order</td>
+                <td>{{ order.payment_method }}</td>
+                <td>Rs. {{ order.total_price }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="total">
+        Grand Total: Rs. {{ order.total_price }}
+    </div>
+
+    <div class="footer">
+        <p>Thank you for shopping with MyShop.</p>
+        <p>This is a computer-generated invoice and does not require signature.</p>
+    </div>
+
+</body>
+
+</html>
